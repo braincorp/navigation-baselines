@@ -29,9 +29,10 @@ class bc_sst_wrapper(BaseSystem):
 
         # Move the environment with the required number of steps
         for _ in range(num_steps):
-            obs, _, done, _ = self.env.step(control)
-            # TODO: NEED TO CHECK IF THIS IS OK
+            obs, r, done, _ = self.env.step(control)
             if done:
+                if r < -10:
+                    return None
                 self.env.reset()
                 break
 
@@ -43,9 +44,9 @@ class bc_sst_wrapper(BaseSystem):
         Normalize the state and return points
         :param state : the state of the robot
         """
-        # TODO : Which states to plot
-        min_x, max_x = self.env.observation_space_bounds[0]
-        min_y, max_y = self.env.observation_space_bounds[1]
+        visualize_bounds = self.env.get_visualize_bounds()
+        min_x, max_x = visualize_bounds[0]
+        min_y, max_y = visualize_bounds[1]
         x = (state[0] - min_x) / (max_x - min_x)
         y = (state[1] - min_y) / (max_y - min_y)
         return x, y
