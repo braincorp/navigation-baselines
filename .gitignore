@@ -1,4 +1,5 @@
 sparse_rrt/**
 env_setup.sh
 **/__pycache__
+test/**
 
