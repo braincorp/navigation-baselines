@@ -13,9 +13,7 @@ class bc_gym_wrapper():
         self.robot_type = env._state.robot_state.get_robot_type_name()
         start = env.reset()
         self.start = start.robot_state.to_numpy_array()
-        goal_pose = env._reward_provider._state.current_goal_pose()
-        goal_vel = np.array([0.2, 0.1, 0])
-        self.goal = np.concatenate((goal_pose, goal_vel))
+        self.set_goal_position()
         self.env_initial_state = env.get_state()
 
         self.env_state_keys, self.observation_space_bounds, self.circular_topology = get_robot_state_info(
@@ -26,6 +24,11 @@ class bc_gym_wrapper():
 
         self.action_space_bound = list(
             zip(env.action_space.low, env.action_space.high))
+
+    def set_goal_position(self):
+        goal_pose = self.env._reward_provider._state.current_goal_pose()
+        goal_vel = np.array([1e-1] * (len(self.start) - len(goal_pose)))
+        self.goal = np.concatenate((goal_pose, goal_vel))
 
     def get_visualize_bounds(self):
         return [
