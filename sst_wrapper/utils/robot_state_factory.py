@@ -27,11 +27,9 @@ def get_robot_state_info(robot_name, world_size, origin):
     :param robot_name: A string robot name
     :returns : A tuple with the environment state, bounds and circular topology flags
     """
-
+    max_x_y = world_size + origin
+    min_x_y = origin
     if robot_name in StandardRobotExamples.INDUSTRIAL_TRICYCLE_V1:
-        max_x_y = world_size + origin
-        min_x_y = origin
-
         return (
             ['x', 'y', 'angle', 'v', 'w', 'wheel_angle'],
             [
@@ -45,4 +43,14 @@ def get_robot_state_info(robot_name, world_size, origin):
             [False, False, True, False, False, True],
         )
     if robot_name in StandardRobotExamples.INDUSTRIAL_DIFFDRIVE_V1:
-        return ([], [], [])
+        return (
+            ['x', 'y', 'angle', 'v', 'w'],
+            [
+                (min_x_y[0], max_x_y[0]),
+                (min_x_y[1], max_x_y[1]),
+                (-np.pi, np.pi),
+                (0, 1.047),
+                (-1.086, 1.086),
+            ],
+            [False, False, True, False, False],
+        )
