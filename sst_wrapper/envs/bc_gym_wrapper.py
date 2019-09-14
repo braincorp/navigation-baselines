@@ -6,6 +6,10 @@ from sst_wrapper.utils.robot_state_factory import create_robot_state, get_robot_
 
 class bc_gym_wrapper():
     def __init__(self, env):
+        """
+        Initialize the wrapper
+        :param env: An object of class or subclass of PlanEnv
+        """
         assert issubclass(
             type(env),
             PlanEnv), "env should be an object of class or subclass of PlanEnv"
@@ -26,6 +30,9 @@ class bc_gym_wrapper():
             zip(env.action_space.low, env.action_space.high))
 
     def set_goal_position(self):
+        """
+        Sets the goal position of the robot. The states that do not mark the initial position of the robot is set to be 0.1.
+        """
         goal_pose = self.env._reward_provider._state.current_goal_pose()
         goal_vel = np.array([1e-1] * (len(self.start) - len(goal_pose)))
         self.goal = np.concatenate((goal_pose, goal_vel))
@@ -36,15 +43,26 @@ class bc_gym_wrapper():
         ]
 
     def set_state(self, state):
+        """
+        A function that sets the state of the robot to the given state.
+        :param state: A numpy array of the same size as the number of environment state.
+        """
         state_dict = dict(zip(self.env_state_keys, state))
         robot_state = create_robot_state(self.robot_type, **state_dict)
         self.env_initial_state.robot_state = robot_state
         self.env.set_state(self.env_initial_state)
 
     def step(self, action):
+        """
+        Take a step in the environment
+        :param action: A numpy array, the same size as action dim
+        """
         obs, r, done, info = self.env.step(Action(np.array(action)))
         return obs, r, done, info
 
     def reset(self):
+        """
+        Resets the environment
+        """
         obs = self.env.reset()
         return obs
