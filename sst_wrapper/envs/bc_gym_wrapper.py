@@ -38,6 +38,10 @@ class bc_gym_wrapper():
         self.goal = np.concatenate((goal_pose, goal_vel))
 
     def get_visualize_bounds(self):
+        """
+        The bounds of the state to be visualized.
+        :returns : (x,y) coordinate of the robot.
+        """
         return [
             self.observation_space_bounds[0], self.observation_space_bounds[1]
         ]
