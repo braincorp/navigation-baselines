@@ -10,10 +10,12 @@ setup(
     url='',
     download_url='',
     license='BSD License 2.0',
-    install_requires=['numpy>=1.13.3'],
-    dependency_links=[
-        'https://github.com/jacobjj/bc-gym-planning-env.git',
-        'https://github.com/jacobjj/sparse_rrt.git'
+    install_requires=[
+        'numpy>=1.13.3',
+        'bc_gym_planning_env @ git+https://github.com/jacobjj/bc-gym-planning-env.git@new_reward_fun#egg=bc_gym_planning_env-0.0.1',
+        'sparse_rrt @ git+https://github.com/jacobjj/sparse_rrt.git@master#egg=sparse_rrt-0.0.2',
+        'cairosvg==2.4.2',
+        'requests==2.22.0',
     ],
     package_data={'': ['input']},
     include_package_data=True,
