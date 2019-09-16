@@ -13,10 +13,14 @@ import numpy as np
 import time
 
 
-def run_planner(env, iterations):
+def run_planner(env, args):
     # write a planner for a given environment and iterations
     start, goal = env.start, env.goal
     bc_robot = bc_sst_wrapper(env)
+    if args.graph:
+        display_type = 'tree'
+    else:
+        display_type = None
     point_config = dict(system=bc_robot,
                         planner='sst',
                         sst_delta_near=0.6,
@@ -28,8 +32,8 @@ def run_planner(env, iterations):
                         integration_step=0.05,
                         min_time_steps=1,
                         max_time_steps=20,
-                        number_of_iterations=iterations,
-                        display_type='tree')
+                        number_of_iterations=args.iterations,
+                        display_type=display_type)
     planner = run_config(point_config)
     solution = planner.get_solution()
 
@@ -43,9 +47,9 @@ def parse_arguments():
     parser.add_argument('robot', choices=['tri', 'diff'])
     parser.add_argument('env', choices=['mini', 'turn', 'map'])
     parser.add_argument('--iterations', type=int, default=10000)
-    # TODO : set up flags for visualizing and executing the plots
-    # parser.add_argument('--visualize-graph',)
-    # parser.add_argument('--execute')
+    parser.add_argument('--graph',dest='graph',default=False,action=
+                        "store_true")
+    parser.add_argument('--render',dest='render',default=False,action='store_true')
     args = parser.parse_args()
 
     return args
@@ -84,10 +88,10 @@ if __name__ == "__main__":
     args = parse_arguments()
     env = create_env(args.robot, args.env)
     wrapped_env = bc_gym_wrapper(env)
-    solution = run_planner(wrapped_env, args.iterations)
+    solution = run_planner(wrapped_env, args)
 
     # Evaluate the solution
-    if solution:
+    if solution and args.render:
         _, actions, time_duration = solution
         time_duration = time_duration / 0.05
         obs = env.reset()
