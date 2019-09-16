@@ -4,3 +4,4 @@ python:
 
 script:
   - pip install -e .
+  - python scripts/run_planner tri mini
