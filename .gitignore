@@ -3,3 +3,9 @@ env_setup.sh
 **/__pycache__
 test/**
 
+
+# Tox files
+tox.ini
+.tox
+
+*.egg-info
