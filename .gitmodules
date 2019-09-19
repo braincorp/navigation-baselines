@@ -1,0 +1,6 @@
+[submodule "deps/sparse_rrt"]
+	path = deps/sparse_rrt
+	url = https://github.com/olegsinyavskiy/sparse_rrt.git
+[submodule "deps/bc-gym-planning-env"]
+	path = deps/bc-gym-planning-env
+	url = https://github.com/jacobjj/bc-gym-planning-env.git
