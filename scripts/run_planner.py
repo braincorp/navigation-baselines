@@ -44,18 +44,37 @@ def parse_arguments():
 
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('robot', choices=['tri', 'diff'],help="The robot in the environment")
-    parser.add_argument('env', choices=['mini', 'turn', 'map'],help="The environment to run the experiment on")
-    parser.add_argument('--iterations', type=int, default=10000,help="Number of iterations to run the SST Planner")
-    parser.add_argument('--graph',dest='graph',default=False,action=
-                        "store_true",help="visualize the planning ggraph build")
-    parser.add_argument('--render',dest='render',default=False,action='store_true',help="visualize the final path returned from the planner if there is one")
-    parser.add_argument('--seed',type=int,default=None, help="set the seed of the environment")
+    parser.add_argument('robot',
+                        choices=['tri', 'diff'],
+                        help="The robot in the environment")
+    parser.add_argument('env',
+                        choices=['mini', 'turn', 'map'],
+                        help="The environment to run the experiment on")
+    parser.add_argument('--iterations',
+                        type=int,
+                        default=10000,
+                        help="Number of iterations to run the SST Planner")
+    parser.add_argument('--graph',
+                        dest='graph',
+                        default=False,
+                        action="store_true",
+                        help="visualize the planning ggraph build")
+    parser.add_argument(
+        '--render',
+        dest='render',
+        default=False,
+        action='store_true',
+        help=
+        "visualize the final path returned from the planner if there is one")
+    parser.add_argument('--seed',
+                        type=int,
+                        default=None,
+                        help="set the seed of the environment")
     args = parser.parse_args()
     return args
 
 
-def create_env(robot, env,seed=None):
+def create_env(robot, env, seed=None):
     """
     Creates the environment based on the arguments passed
     """
@@ -89,7 +108,7 @@ def create_env(robot, env,seed=None):
 
 if __name__ == "__main__":
     args = parse_arguments()
-    env = create_env(args.robot, args.env,args.seed)
+    env = create_env(args.robot, args.env, args.seed)
     wrapped_env = bc_gym_wrapper(env)
     solution = run_planner(wrapped_env, args)
 
