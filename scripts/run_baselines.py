@@ -40,7 +40,9 @@ class parameter_class():
                 solution = planner.get_solution()
                 if solution:
                     return 1
-        
+        solution = planner.get_solution()
+        if solution:
+            return 1
         return 0
 
 
