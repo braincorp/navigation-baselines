@@ -1,8 +1,10 @@
+from bc_gym_planning_env.envs.base.env import EnvParams
 from scripts.run_planner import run_planner, parse_arguments, create_env
 from sparse_rrt.planners import SST
-from bc_gym_planning_env.envs.base.env import EnvParams
 from sst_wrapper.envs.bc_gym_wrapper import bc_gym_wrapper
 from sst_wrapper.envs.gym_sst_wrapper import bc_sst_wrapper
+
+import argparse
 import multiprocessing as mp
 import numpy as np
 
@@ -29,16 +31,16 @@ class parameter_class():
             goal_state=goal,
             goal_radius=0.5,
             random_seed=0,
-            sst_delta_near=self.sst_delta_near,
-            sst_delta_drain=self.sst_delta_drain,
+            sst_delta_near=0.65,
+            sst_delta_drain=0.05,
         )
         for iteration in range(100000):
-            planner.step(bc_robot, 1, self.sst_step_size, .05)
+            planner.step(bc_robot, 1, 10, .05)
             if iteration % 10000 == 0:
                 solution = planner.get_solution()
                 if solution:
                     return 1
-        solution = planner.get_solution()
+        
         return 0
 
 
