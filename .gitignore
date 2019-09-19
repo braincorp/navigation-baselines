@@ -9,3 +9,5 @@ tox.ini
 .tox
 
 *.egg-info
+
+*.ipynb_checkpoints/
