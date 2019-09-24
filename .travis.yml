@@ -4,4 +4,5 @@ python:
 
 script:
   - pip install -e .
+  - pip install cython
   - python scripts/run_planner.py tri mini
