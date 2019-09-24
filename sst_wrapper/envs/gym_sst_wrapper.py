@@ -2,6 +2,7 @@ import numpy as np
 
 from sparse_rrt.systems.system_interface import BaseSystem
 from bc_gym_planning_env.envs.base.action import Action
+from sst_wrapper.utils.distance_function import TriStateDistance
 
 
 class bc_sst_wrapper(BaseSystem):
@@ -69,3 +70,6 @@ class bc_sst_wrapper(BaseSystem):
         :return boolean flag for each coordinate
         """
         return self.env.circular_topology
+
+    def distance_computer(self):
+        return TriStateDistance()
