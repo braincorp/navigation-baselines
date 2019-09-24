@@ -2,7 +2,10 @@ language: python
 python:
   - "3.6"
 
+install:
+  - pip install cython
+
+
 script:
   - pip install -e .
-  - pip install cython
   - python scripts/run_planner.py tri mini
