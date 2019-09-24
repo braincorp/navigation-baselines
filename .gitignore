@@ -2,6 +2,7 @@ sparse_rrt/**
 env_setup.sh
 **/__pycache__
 test/**
+build/**
 
 
 # Tox files
@@ -11,3 +12,6 @@ tox.ini
 *.egg-info
 
 *.ipynb_checkpoints/
+
+**/*.so
+sst_wrapper/**/*.c

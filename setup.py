@@ -1,4 +1,5 @@
 from setuptools import setup, find_packages
+from Cython.Build import cythonize
 
 setup(
     name='sst_wrapper',
@@ -29,4 +30,5 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules'
     ],
     packages=find_packages(),
+    ext_modules=cythonize("sst_wrapper/utils/distance_function.pyx"),
 )
