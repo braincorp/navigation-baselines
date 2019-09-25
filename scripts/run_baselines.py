@@ -74,6 +74,7 @@ def run_baselines():
     results = pool.map(sst_planner.run_planner, range(args.num_env))
     pool.close()
     print("Accuracy : {}".format(100 * np.sum(results) / args.num_env))
+    print("Failed environments : {}".format(np.where(np.array(results)==0)))
 
 
 if __name__ == "__main__":
