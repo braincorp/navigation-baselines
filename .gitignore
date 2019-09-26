@@ -14,4 +14,3 @@ tox.ini
 *.ipynb_checkpoints/
 
 **/*.so
-sst_wrapper/**/*.c
