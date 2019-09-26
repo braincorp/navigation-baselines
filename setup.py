@@ -5,7 +5,7 @@ try:
 except ImportError:
     ext_module = [Extension('sst_wrapper.utils.distance_function',['sst_wrapper/utils/distance_function.c'])]
 else:
-    ext_module = [cythonize('sst_wrapper/utils/distance_function.pyx')]
+    ext_module = cythonize('sst_wrapper/utils/distance_function.pyx')
 
 setup(
     name='sst_wrapper',
