@@ -4,4 +4,7 @@ python:
 
 script:
   - pip install -e .
+  - py.test --pep8 -m pep8 -n8
+  - py.test -n8
+  - ./test_pylint
   - python scripts/run_planner.py tri mini
