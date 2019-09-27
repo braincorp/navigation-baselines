@@ -34,6 +34,8 @@ def get_robot_state_info(robot_name, world_size, origin):
     Given a robot name, return the state info , bounds and circular topology
     flag.
     :param robot_name: A string robot name
+    :param world_size: The dimensions of the map
+    :param origin: The origin of the static map
     :returns : A tuple with the environment state, bounds and circular
     topology flags
     """
