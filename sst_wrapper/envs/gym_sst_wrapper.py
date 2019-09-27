@@ -1,8 +1,10 @@
-import numpy as np
+"""Creates a system compatible with sst planners."""
+from __future__ import print_function
+from __future__ import absolute_import
+from __future__ import division
 
 from sparse_rrt.systems.system_interface import BaseSystem
-from bc_gym_planning_env.envs.base.action import Action
-from sst_wrapper.utils.distance_function import TriStateDistance
+from sst_wrapper.utils.distance_function import TriStateDistance # pylint: disable=no-name-in-module
 
 
 class bc_sst_wrapper(BaseSystem):
@@ -12,12 +14,12 @@ class bc_sst_wrapper(BaseSystem):
     def __init__(self, env):
         """
         Initialize the configuration set
-        :param env : 
+        :param env:
         """
         self.env = env
         super().__init__()
 
-    def propagate(self, start_state, control, num_steps, integration_steps):
+    def propagate(self, start_state, control, num_steps, integration_step):
         """
         returns the state of the robot by propogating it for the required number of integration steps and control signals
         :param start_state:
