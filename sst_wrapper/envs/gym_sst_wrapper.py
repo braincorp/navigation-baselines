@@ -1,7 +1,9 @@
-import numpy as np
+"""A class to create a function that sets up a system for sst planning"""
+from __future__ import print_function
+from __future__ import absolute_import
+from __future__ import division
 
 from sparse_rrt.systems.system_interface import BaseSystem
-from bc_gym_planning_env.envs.base.action import Action
 
 
 class bc_sst_wrapper(BaseSystem):
@@ -16,7 +18,7 @@ class bc_sst_wrapper(BaseSystem):
         self.env = env
         super().__init__()
 
-    def propagate(self, start_state, control, num_steps, integration_steps):
+    def propagate(self, start_state, control, num_steps, integration_step):
         """
         returns the state of the robot by propogating it for the required number of integration steps and control signals
         :param start_state:
