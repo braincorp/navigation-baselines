@@ -4,6 +4,8 @@ python:
 
 install:
   - pip install -r requirements.txt
+  - pip install pylint
+  
 script:
   - pip install -e .
   - py.test --pep8 -m pep8 -n0
