@@ -6,7 +6,7 @@ from __future__ import division
 from sparse_rrt.systems.system_interface import BaseSystem
 
 
-class bc_sst_wrapper(BaseSystem):# pylint: disable=invalid-name
+class bc_sst_wrapper(BaseSystem):  # pylint: disable=invalid-name
     """
     A class to wrap a gym environment to facilitate planning using sparse RRT
     """
