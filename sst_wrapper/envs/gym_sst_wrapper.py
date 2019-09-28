@@ -6,7 +6,7 @@ from __future__ import division
 
 from sparse_rrt.systems.system_interface import BaseSystem
 
-from sst_wrapper.utils.distance_function import TriStateDistance # pylint: disable=no-name-in-module
+from sst_wrapper.utils.distance_function import TriStateDistance  # pylint: disable=no-name-in-module
 
 
 class bc_sst_wrapper(BaseSystem):  # pylint: disable=invalid-name
