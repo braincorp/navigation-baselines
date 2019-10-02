@@ -67,4 +67,4 @@ def get_robot_state_info(robot_name, world_size, origin):
             [False, False, True, False, False],
         )
 
-    return []
+    raise ValueError("Unknown robot type")

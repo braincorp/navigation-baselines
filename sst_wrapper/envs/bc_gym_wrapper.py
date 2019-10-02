@@ -39,7 +39,7 @@ class BcGymWrapper():
         """
         Sets the goal position of the robot. The states that do not mark the initial position of the robot is set to be 0.1.
         """
-        goal_pose = self.env._reward_provider._state.current_goal_pose()  #pylint: disable=protected-access
+        goal_pose = self.env._reward_provider._state.path[-1]  #pylint: disable=protected-access
         goal_vel = np.array([1e-1] * (len(self.start) - len(goal_pose)))
         self.goal = np.concatenate((goal_pose, goal_vel))
 
