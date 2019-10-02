@@ -9,7 +9,7 @@ from sparse_rrt.systems.system_interface import BaseSystem
 from sst_wrapper.utils.distance_function import TriStateDistance  # pylint: disable=no-name-in-module
 
 
-class bc_sst_wrapper(BaseSystem):  # pylint: disable=invalid-name
+class BcSstWrapper(BaseSystem):
     """
     A class to wrap a gym environment to facilitate planning using sparse RRT
     """
