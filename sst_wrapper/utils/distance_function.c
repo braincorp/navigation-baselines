@@ -1884,6 +1884,7 @@ static const char __pyx_k_dtype_is_object[] = "dtype_is_object";
 static const char __pyx_k_pyx_PickleError[] = "__pyx_PickleError";
 static const char __pyx_k_setstate_cython[] = "__setstate_cython__";
 static const char __pyx_k_TriStateDistance[] = "TriStateDistance";
+static const char __pyx_k_DiffStateDistance[] = "DiffStateDistance";
 static const char __pyx_k_pyx_unpickle_Enum[] = "__pyx_unpickle_Enum";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static const char __pyx_k_strided_and_direct[] = "<strided and direct>";
@@ -1896,9 +1897,11 @@ static const char __pyx_k_contiguous_and_indirect[] = "<contiguous and indirect>
 static const char __pyx_k_Cannot_index_with_type_s[] = "Cannot index with type '%s'";
 static const char __pyx_k_Invalid_shape_in_axis_d_d[] = "Invalid shape in axis %d: %d.";
 static const char __pyx_k_TriStateDistance_distance[] = "TriStateDistance.distance";
+static const char __pyx_k_DiffStateDistance_distance[] = "DiffStateDistance.distance";
 static const char __pyx_k_itemsize_0_for_cython_array[] = "itemsize <= 0 for cython.array";
 static const char __pyx_k_unable_to_allocate_array_data[] = "unable to allocate array data.";
 static const char __pyx_k_strided_and_direct_or_indirect[] = "<strided and direct or indirect>";
+static const char __pyx_k_Custom_distance_function_for_Di[] = "\n    Custom distance function for Diffdrive robot.\n    ";
 static const char __pyx_k_Custom_distance_function_for_Tr[] = "\n    Custom distance function for Tricycle robot.\n    ";
 static const char __pyx_k_Buffer_view_does_not_expose_stri[] = "Buffer view does not expose strides";
 static const char __pyx_k_Can_only_create_a_buffer_that_is[] = "Can only create a buffer that is contiguous in memory.";
@@ -1920,7 +1923,10 @@ static PyObject *__pyx_kp_s_Can_only_create_a_buffer_that_is;
 static PyObject *__pyx_kp_s_Cannot_assign_to_read_only_memor;
 static PyObject *__pyx_kp_s_Cannot_create_writable_memory_vi;
 static PyObject *__pyx_kp_s_Cannot_index_with_type_s;
+static PyObject *__pyx_kp_s_Custom_distance_function_for_Di;
 static PyObject *__pyx_kp_s_Custom_distance_function_for_Tr;
+static PyObject *__pyx_n_s_DiffStateDistance;
+static PyObject *__pyx_n_s_DiffStateDistance_distance;
 static PyObject *__pyx_n_s_Ellipsis;
 static PyObject *__pyx_kp_s_Empty_shape_tuple_for_cython_arr;
 static PyObject *__pyx_n_s_IDistance;
@@ -2021,6 +2027,7 @@ static PyObject *__pyx_kp_s_unable_to_allocate_shape_and_str;
 static PyObject *__pyx_n_s_unpack;
 static PyObject *__pyx_n_s_update;
 static PyObject *__pyx_pf_11sst_wrapper_5utils_17distance_function_16TriStateDistance_distance(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, __Pyx_memviewslice __pyx_v_point1, __Pyx_memviewslice __pyx_v_point2); /* proto */
+static PyObject *__pyx_pf_11sst_wrapper_5utils_17distance_function_17DiffStateDistance_distance(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, __Pyx_memviewslice __pyx_v_point1, __Pyx_memviewslice __pyx_v_point2); /* proto */
 static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __pyx_array_obj *__pyx_v_self, PyObject *__pyx_v_shape, Py_ssize_t __pyx_v_itemsize, PyObject *__pyx_v_format, PyObject *__pyx_v_mode, int __pyx_v_allocate_buffer); /* proto */
 static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(struct __pyx_array_obj *__pyx_v_self, Py_buffer *__pyx_v_info, int __pyx_v_flags); /* proto */
 static void __pyx_array___pyx_pf_15View_dot_MemoryView_5array_4__dealloc__(struct __pyx_array_obj *__pyx_v_self); /* proto */
@@ -2091,16 +2098,18 @@ static PyObject *__pyx_tuple__17;
 static PyObject *__pyx_tuple__18;
 static PyObject *__pyx_tuple__19;
 static PyObject *__pyx_tuple__21;
-static PyObject *__pyx_tuple__22;
 static PyObject *__pyx_tuple__23;
 static PyObject *__pyx_tuple__24;
 static PyObject *__pyx_tuple__25;
 static PyObject *__pyx_tuple__26;
+static PyObject *__pyx_tuple__27;
+static PyObject *__pyx_tuple__28;
 static PyObject *__pyx_codeobj__20;
-static PyObject *__pyx_codeobj__27;
+static PyObject *__pyx_codeobj__22;
+static PyObject *__pyx_codeobj__29;
 /* Late includes */
 
-/* "sst_wrapper/utils/distance_function.pyx":8
+/* "sst_wrapper/utils/distance_function.pyx":6
  * 
  * 
  * cdef double normalize_angle(double z):             # <<<<<<<<<<<<<<
@@ -2118,39 +2127,39 @@ static double __pyx_f_11sst_wrapper_5utils_17distance_function_normalize_angle(d
   double __pyx_t_4;
   __Pyx_RefNannySetupContext("normalize_angle", 0);
 
-  /* "sst_wrapper/utils/distance_function.pyx":9
+  /* "sst_wrapper/utils/distance_function.pyx":7
  * 
  * cdef double normalize_angle(double z):
  *     cdef double PI= np.pi             # <<<<<<<<<<<<<<
  *     return (z+PI) % (2 * PI) - PI
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 9, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_pi); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 9, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_pi); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_3 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 9, __pyx_L1_error)
+  __pyx_t_3 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_3 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 7, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_PI = __pyx_t_3;
 
-  /* "sst_wrapper/utils/distance_function.pyx":10
+  /* "sst_wrapper/utils/distance_function.pyx":8
  * cdef double normalize_angle(double z):
  *     cdef double PI= np.pi
  *     return (z+PI) % (2 * PI) - PI             # <<<<<<<<<<<<<<
  * 
- * class TriStateDistance(_sst_module.IDistance):
+ * 
  */
   __pyx_t_3 = (__pyx_v_z + __pyx_v_PI);
   __pyx_t_4 = (2.0 * __pyx_v_PI);
   if (unlikely(__pyx_t_4 == 0)) {
     PyErr_SetString(PyExc_ZeroDivisionError, "float divmod()");
-    __PYX_ERR(0, 10, __pyx_L1_error)
+    __PYX_ERR(0, 8, __pyx_L1_error)
   }
   __pyx_r = (__Pyx_mod_double(__pyx_t_3, __pyx_t_4) - __pyx_v_PI);
   goto __pyx_L0;
 
-  /* "sst_wrapper/utils/distance_function.pyx":8
+  /* "sst_wrapper/utils/distance_function.pyx":6
  * 
  * 
  * cdef double normalize_angle(double z):             # <<<<<<<<<<<<<<
@@ -2169,16 +2178,18 @@ static double __pyx_f_11sst_wrapper_5utils_17distance_function_normalize_angle(d
   return __pyx_r;
 }
 
-/* "sst_wrapper/utils/distance_function.pyx":16
+/* "sst_wrapper/utils/distance_function.pyx":15
  *     Custom distance function for Tricycle robot.
  *     """
  *     def distance(self,double[:] point1,double[:] point2):             # <<<<<<<<<<<<<<
- *         return ((point1[0]-point2[0])**2 +(point1[1]-point2[1])**2+ normalize_angle(point1[2]-point2[2])**2 +normalize_angle(point1[5]-point2[5])**2)**0.5
+ *         """
+ *         A cython function that calculates the euclidean distance between two
  */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_11sst_wrapper_5utils_17distance_function_16TriStateDistance_1distance(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_11sst_wrapper_5utils_17distance_function_16TriStateDistance_1distance = {"distance", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11sst_wrapper_5utils_17distance_function_16TriStateDistance_1distance, METH_VARARGS|METH_KEYWORDS, 0};
+static char __pyx_doc_11sst_wrapper_5utils_17distance_function_16TriStateDistance_distance[] = "\n        A cython function that calculates the euclidean distance between two\n        states for the differential robot  by ignoring the kinematic state\n        information. The index reference is as follows:\n        point[0] - x axis coordinate\n        point[1] - y axis coordinate\n        point[2] - orientation of the robot\n        point[5] - the wheel angle\n        :param point1: First point of Tricycle robot.\n        :param point2: Second point of Tricycle robot.\n        :return: The euclidean distance between the points, ignoring\n        kinematic states.\n        ";
+static PyMethodDef __pyx_mdef_11sst_wrapper_5utils_17distance_function_16TriStateDistance_1distance = {"distance", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11sst_wrapper_5utils_17distance_function_16TriStateDistance_1distance, METH_VARARGS|METH_KEYWORDS, __pyx_doc_11sst_wrapper_5utils_17distance_function_16TriStateDistance_distance};
 static PyObject *__pyx_pw_11sst_wrapper_5utils_17distance_function_16TriStateDistance_1distance(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   CYTHON_UNUSED PyObject *__pyx_v_self = 0;
   __Pyx_memviewslice __pyx_v_point1 = { 0, 0, { 0 }, { 0 }, { 0 } };
@@ -2211,17 +2222,17 @@ static PyObject *__pyx_pw_11sst_wrapper_5utils_17distance_function_16TriStateDis
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_point1)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("distance", 1, 3, 3, 1); __PYX_ERR(0, 16, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("distance", 1, 3, 3, 1); __PYX_ERR(0, 15, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_point2)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("distance", 1, 3, 3, 2); __PYX_ERR(0, 16, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("distance", 1, 3, 3, 2); __PYX_ERR(0, 15, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "distance") < 0)) __PYX_ERR(0, 16, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "distance") < 0)) __PYX_ERR(0, 15, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -2231,12 +2242,12 @@ static PyObject *__pyx_pw_11sst_wrapper_5utils_17distance_function_16TriStateDis
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
     __pyx_v_self = values[0];
-    __pyx_v_point1 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[1], PyBUF_WRITABLE); if (unlikely(!__pyx_v_point1.memview)) __PYX_ERR(0, 16, __pyx_L3_error)
-    __pyx_v_point2 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[2], PyBUF_WRITABLE); if (unlikely(!__pyx_v_point2.memview)) __PYX_ERR(0, 16, __pyx_L3_error)
+    __pyx_v_point1 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[1], PyBUF_WRITABLE); if (unlikely(!__pyx_v_point1.memview)) __PYX_ERR(0, 15, __pyx_L3_error)
+    __pyx_v_point2 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[2], PyBUF_WRITABLE); if (unlikely(!__pyx_v_point2.memview)) __PYX_ERR(0, 15, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("distance", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 16, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("distance", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 15, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("sst_wrapper.utils.distance_function.TriStateDistance.distance", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -2264,12 +2275,22 @@ static PyObject *__pyx_pf_11sst_wrapper_5utils_17distance_function_16TriStateDis
   PyObject *__pyx_t_10 = NULL;
   __Pyx_RefNannySetupContext("distance", 0);
 
-  /* "sst_wrapper/utils/distance_function.pyx":17
- *     """
- *     def distance(self,double[:] point1,double[:] point2):
- *         return ((point1[0]-point2[0])**2 +(point1[1]-point2[1])**2+ normalize_angle(point1[2]-point2[2])**2 +normalize_angle(point1[5]-point2[5])**2)**0.5             # <<<<<<<<<<<<<<
+  /* "sst_wrapper/utils/distance_function.pyx":29
+ *         kinematic states.
+ *         """
+ *         return (             # <<<<<<<<<<<<<<
+ *             (point1[0]-point2[0])**2 +
+ *             (point1[1]-point2[1])**2 +
  */
   __Pyx_XDECREF(__pyx_r);
+
+  /* "sst_wrapper/utils/distance_function.pyx":30
+ *         """
+ *         return (
+ *             (point1[0]-point2[0])**2 +             # <<<<<<<<<<<<<<
+ *             (point1[1]-point2[1])**2 +
+ *             normalize_angle(point1[2]-point2[2])**2 +
+ */
   __pyx_t_1 = 0;
   __pyx_t_2 = -1;
   if (__pyx_t_1 < 0) {
@@ -2278,7 +2299,7 @@ static PyObject *__pyx_pf_11sst_wrapper_5utils_17distance_function_16TriStateDis
   } else if (unlikely(__pyx_t_1 >= __pyx_v_point1.shape[0])) __pyx_t_2 = 0;
   if (unlikely(__pyx_t_2 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_2);
-    __PYX_ERR(0, 17, __pyx_L1_error)
+    __PYX_ERR(0, 30, __pyx_L1_error)
   }
   __pyx_t_3 = 0;
   __pyx_t_2 = -1;
@@ -2288,8 +2309,16 @@ static PyObject *__pyx_pf_11sst_wrapper_5utils_17distance_function_16TriStateDis
   } else if (unlikely(__pyx_t_3 >= __pyx_v_point2.shape[0])) __pyx_t_2 = 0;
   if (unlikely(__pyx_t_2 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_2);
-    __PYX_ERR(0, 17, __pyx_L1_error)
+    __PYX_ERR(0, 30, __pyx_L1_error)
   }
+
+  /* "sst_wrapper/utils/distance_function.pyx":31
+ *         return (
+ *             (point1[0]-point2[0])**2 +
+ *             (point1[1]-point2[1])**2 +             # <<<<<<<<<<<<<<
+ *             normalize_angle(point1[2]-point2[2])**2 +
+ *             normalize_angle(point1[5]-point2[5])**2
+ */
   __pyx_t_4 = 1;
   __pyx_t_2 = -1;
   if (__pyx_t_4 < 0) {
@@ -2298,7 +2327,7 @@ static PyObject *__pyx_pf_11sst_wrapper_5utils_17distance_function_16TriStateDis
   } else if (unlikely(__pyx_t_4 >= __pyx_v_point1.shape[0])) __pyx_t_2 = 0;
   if (unlikely(__pyx_t_2 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_2);
-    __PYX_ERR(0, 17, __pyx_L1_error)
+    __PYX_ERR(0, 31, __pyx_L1_error)
   }
   __pyx_t_5 = 1;
   __pyx_t_2 = -1;
@@ -2308,8 +2337,16 @@ static PyObject *__pyx_pf_11sst_wrapper_5utils_17distance_function_16TriStateDis
   } else if (unlikely(__pyx_t_5 >= __pyx_v_point2.shape[0])) __pyx_t_2 = 0;
   if (unlikely(__pyx_t_2 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_2);
-    __PYX_ERR(0, 17, __pyx_L1_error)
+    __PYX_ERR(0, 31, __pyx_L1_error)
   }
+
+  /* "sst_wrapper/utils/distance_function.pyx":32
+ *             (point1[0]-point2[0])**2 +
+ *             (point1[1]-point2[1])**2 +
+ *             normalize_angle(point1[2]-point2[2])**2 +             # <<<<<<<<<<<<<<
+ *             normalize_angle(point1[5]-point2[5])**2
+ *         )**0.5
+ */
   __pyx_t_6 = 2;
   __pyx_t_2 = -1;
   if (__pyx_t_6 < 0) {
@@ -2318,7 +2355,7 @@ static PyObject *__pyx_pf_11sst_wrapper_5utils_17distance_function_16TriStateDis
   } else if (unlikely(__pyx_t_6 >= __pyx_v_point1.shape[0])) __pyx_t_2 = 0;
   if (unlikely(__pyx_t_2 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_2);
-    __PYX_ERR(0, 17, __pyx_L1_error)
+    __PYX_ERR(0, 32, __pyx_L1_error)
   }
   __pyx_t_7 = 2;
   __pyx_t_2 = -1;
@@ -2328,8 +2365,16 @@ static PyObject *__pyx_pf_11sst_wrapper_5utils_17distance_function_16TriStateDis
   } else if (unlikely(__pyx_t_7 >= __pyx_v_point2.shape[0])) __pyx_t_2 = 0;
   if (unlikely(__pyx_t_2 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_2);
-    __PYX_ERR(0, 17, __pyx_L1_error)
+    __PYX_ERR(0, 32, __pyx_L1_error)
   }
+
+  /* "sst_wrapper/utils/distance_function.pyx":33
+ *             (point1[1]-point2[1])**2 +
+ *             normalize_angle(point1[2]-point2[2])**2 +
+ *             normalize_angle(point1[5]-point2[5])**2             # <<<<<<<<<<<<<<
+ *         )**0.5
+ * 
+ */
   __pyx_t_8 = 5;
   __pyx_t_2 = -1;
   if (__pyx_t_8 < 0) {
@@ -2338,7 +2383,7 @@ static PyObject *__pyx_pf_11sst_wrapper_5utils_17distance_function_16TriStateDis
   } else if (unlikely(__pyx_t_8 >= __pyx_v_point1.shape[0])) __pyx_t_2 = 0;
   if (unlikely(__pyx_t_2 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_2);
-    __PYX_ERR(0, 17, __pyx_L1_error)
+    __PYX_ERR(0, 33, __pyx_L1_error)
   }
   __pyx_t_9 = 5;
   __pyx_t_2 = -1;
@@ -2348,25 +2393,253 @@ static PyObject *__pyx_pf_11sst_wrapper_5utils_17distance_function_16TriStateDis
   } else if (unlikely(__pyx_t_9 >= __pyx_v_point2.shape[0])) __pyx_t_2 = 0;
   if (unlikely(__pyx_t_2 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_2);
-    __PYX_ERR(0, 17, __pyx_L1_error)
+    __PYX_ERR(0, 33, __pyx_L1_error)
   }
-  __pyx_t_10 = PyFloat_FromDouble(pow((((pow(((*((double *) ( /* dim=0 */ (__pyx_v_point1.data + __pyx_t_1 * __pyx_v_point1.strides[0]) ))) - (*((double *) ( /* dim=0 */ (__pyx_v_point2.data + __pyx_t_3 * __pyx_v_point2.strides[0]) )))), 2.0) + pow(((*((double *) ( /* dim=0 */ (__pyx_v_point1.data + __pyx_t_4 * __pyx_v_point1.strides[0]) ))) - (*((double *) ( /* dim=0 */ (__pyx_v_point2.data + __pyx_t_5 * __pyx_v_point2.strides[0]) )))), 2.0)) + pow(__pyx_f_11sst_wrapper_5utils_17distance_function_normalize_angle(((*((double *) ( /* dim=0 */ (__pyx_v_point1.data + __pyx_t_6 * __pyx_v_point1.strides[0]) ))) - (*((double *) ( /* dim=0 */ (__pyx_v_point2.data + __pyx_t_7 * __pyx_v_point2.strides[0]) ))))), 2.0)) + pow(__pyx_f_11sst_wrapper_5utils_17distance_function_normalize_angle(((*((double *) ( /* dim=0 */ (__pyx_v_point1.data + __pyx_t_8 * __pyx_v_point1.strides[0]) ))) - (*((double *) ( /* dim=0 */ (__pyx_v_point2.data + __pyx_t_9 * __pyx_v_point2.strides[0]) ))))), 2.0)), 0.5)); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 17, __pyx_L1_error)
+
+  /* "sst_wrapper/utils/distance_function.pyx":34
+ *             normalize_angle(point1[2]-point2[2])**2 +
+ *             normalize_angle(point1[5]-point2[5])**2
+ *         )**0.5             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  __pyx_t_10 = PyFloat_FromDouble(pow((((pow(((*((double *) ( /* dim=0 */ (__pyx_v_point1.data + __pyx_t_1 * __pyx_v_point1.strides[0]) ))) - (*((double *) ( /* dim=0 */ (__pyx_v_point2.data + __pyx_t_3 * __pyx_v_point2.strides[0]) )))), 2.0) + pow(((*((double *) ( /* dim=0 */ (__pyx_v_point1.data + __pyx_t_4 * __pyx_v_point1.strides[0]) ))) - (*((double *) ( /* dim=0 */ (__pyx_v_point2.data + __pyx_t_5 * __pyx_v_point2.strides[0]) )))), 2.0)) + pow(__pyx_f_11sst_wrapper_5utils_17distance_function_normalize_angle(((*((double *) ( /* dim=0 */ (__pyx_v_point1.data + __pyx_t_6 * __pyx_v_point1.strides[0]) ))) - (*((double *) ( /* dim=0 */ (__pyx_v_point2.data + __pyx_t_7 * __pyx_v_point2.strides[0]) ))))), 2.0)) + pow(__pyx_f_11sst_wrapper_5utils_17distance_function_normalize_angle(((*((double *) ( /* dim=0 */ (__pyx_v_point1.data + __pyx_t_8 * __pyx_v_point1.strides[0]) ))) - (*((double *) ( /* dim=0 */ (__pyx_v_point2.data + __pyx_t_9 * __pyx_v_point2.strides[0]) ))))), 2.0)), 0.5)); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 34, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __pyx_r = __pyx_t_10;
   __pyx_t_10 = 0;
   goto __pyx_L0;
 
-  /* "sst_wrapper/utils/distance_function.pyx":16
+  /* "sst_wrapper/utils/distance_function.pyx":15
  *     Custom distance function for Tricycle robot.
  *     """
  *     def distance(self,double[:] point1,double[:] point2):             # <<<<<<<<<<<<<<
- *         return ((point1[0]-point2[0])**2 +(point1[1]-point2[1])**2+ normalize_angle(point1[2]-point2[2])**2 +normalize_angle(point1[5]-point2[5])**2)**0.5
+ *         """
+ *         A cython function that calculates the euclidean distance between two
  */
 
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_10);
   __Pyx_AddTraceback("sst_wrapper.utils.distance_function.TriStateDistance.distance", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __PYX_XDEC_MEMVIEW(&__pyx_v_point1, 1);
+  __PYX_XDEC_MEMVIEW(&__pyx_v_point2, 1);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "sst_wrapper/utils/distance_function.pyx":41
+ *     Custom distance function for Diffdrive robot.
+ *     """
+ *     def distance(self,double[:] point1,double[:] point2):             # <<<<<<<<<<<<<<
+ *         """
+ *         A cython function that calculates the euclidean distance between two
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11sst_wrapper_5utils_17distance_function_17DiffStateDistance_1distance(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_11sst_wrapper_5utils_17distance_function_17DiffStateDistance_distance[] = "\n        A cython function that calculates the euclidean distance between two\n        states by ignoring the kinematic state information. The index reference\n        is as follows:\n        point[0] - x axis coordinate\n        point[1] - y axis coordinate\n        point[2] - orientation of the robot\n        :param point1: First point of Diffdrive robot.\n        :param point2: Second point of Diffdrive robot.\n        :return: The euclidean distance between the points, ignoring\n        kinematic states.\n        ";
+static PyMethodDef __pyx_mdef_11sst_wrapper_5utils_17distance_function_17DiffStateDistance_1distance = {"distance", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11sst_wrapper_5utils_17distance_function_17DiffStateDistance_1distance, METH_VARARGS|METH_KEYWORDS, __pyx_doc_11sst_wrapper_5utils_17distance_function_17DiffStateDistance_distance};
+static PyObject *__pyx_pw_11sst_wrapper_5utils_17distance_function_17DiffStateDistance_1distance(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  CYTHON_UNUSED PyObject *__pyx_v_self = 0;
+  __Pyx_memviewslice __pyx_v_point1 = { 0, 0, { 0 }, { 0 }, { 0 } };
+  __Pyx_memviewslice __pyx_v_point2 = { 0, 0, { 0 }, { 0 }, { 0 } };
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("distance (wrapper)", 0);
+  {
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_self,&__pyx_n_s_point1,&__pyx_n_s_point2,0};
+    PyObject* values[3] = {0,0,0};
+    if (unlikely(__pyx_kwds)) {
+      Py_ssize_t kw_args;
+      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
+      switch (pos_args) {
+        case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+        CYTHON_FALLTHROUGH;
+        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+        CYTHON_FALLTHROUGH;
+        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = PyDict_Size(__pyx_kwds);
+      switch (pos_args) {
+        case  0:
+        if (likely((values[0] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_self)) != 0)) kw_args--;
+        else goto __pyx_L5_argtuple_error;
+        CYTHON_FALLTHROUGH;
+        case  1:
+        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_point1)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("distance", 1, 3, 3, 1); __PYX_ERR(0, 41, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  2:
+        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_point2)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("distance", 1, 3, 3, 2); __PYX_ERR(0, 41, __pyx_L3_error)
+        }
+      }
+      if (unlikely(kw_args > 0)) {
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "distance") < 0)) __PYX_ERR(0, 41, __pyx_L3_error)
+      }
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+      values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+      values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+    }
+    __pyx_v_self = values[0];
+    __pyx_v_point1 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[1], PyBUF_WRITABLE); if (unlikely(!__pyx_v_point1.memview)) __PYX_ERR(0, 41, __pyx_L3_error)
+    __pyx_v_point2 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[2], PyBUF_WRITABLE); if (unlikely(!__pyx_v_point2.memview)) __PYX_ERR(0, 41, __pyx_L3_error)
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("distance", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 41, __pyx_L3_error)
+  __pyx_L3_error:;
+  __Pyx_AddTraceback("sst_wrapper.utils.distance_function.DiffStateDistance.distance", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_11sst_wrapper_5utils_17distance_function_17DiffStateDistance_distance(__pyx_self, __pyx_v_self, __pyx_v_point1, __pyx_v_point2);
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11sst_wrapper_5utils_17distance_function_17DiffStateDistance_distance(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, __Pyx_memviewslice __pyx_v_point1, __Pyx_memviewslice __pyx_v_point2) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  Py_ssize_t __pyx_t_1;
+  int __pyx_t_2;
+  Py_ssize_t __pyx_t_3;
+  Py_ssize_t __pyx_t_4;
+  Py_ssize_t __pyx_t_5;
+  Py_ssize_t __pyx_t_6;
+  Py_ssize_t __pyx_t_7;
+  PyObject *__pyx_t_8 = NULL;
+  __Pyx_RefNannySetupContext("distance", 0);
+
+  /* "sst_wrapper/utils/distance_function.pyx":54
+ *         kinematic states.
+ *         """
+ *         return (             # <<<<<<<<<<<<<<
+ *             (point1[0]-point2[0])**2 +
+ *             (point1[1]-point2[1])**2 +
+ */
+  __Pyx_XDECREF(__pyx_r);
+
+  /* "sst_wrapper/utils/distance_function.pyx":55
+ *         """
+ *         return (
+ *             (point1[0]-point2[0])**2 +             # <<<<<<<<<<<<<<
+ *             (point1[1]-point2[1])**2 +
+ *             normalize_angle(point1[2]-point2[2])**2
+ */
+  __pyx_t_1 = 0;
+  __pyx_t_2 = -1;
+  if (__pyx_t_1 < 0) {
+    __pyx_t_1 += __pyx_v_point1.shape[0];
+    if (unlikely(__pyx_t_1 < 0)) __pyx_t_2 = 0;
+  } else if (unlikely(__pyx_t_1 >= __pyx_v_point1.shape[0])) __pyx_t_2 = 0;
+  if (unlikely(__pyx_t_2 != -1)) {
+    __Pyx_RaiseBufferIndexError(__pyx_t_2);
+    __PYX_ERR(0, 55, __pyx_L1_error)
+  }
+  __pyx_t_3 = 0;
+  __pyx_t_2 = -1;
+  if (__pyx_t_3 < 0) {
+    __pyx_t_3 += __pyx_v_point2.shape[0];
+    if (unlikely(__pyx_t_3 < 0)) __pyx_t_2 = 0;
+  } else if (unlikely(__pyx_t_3 >= __pyx_v_point2.shape[0])) __pyx_t_2 = 0;
+  if (unlikely(__pyx_t_2 != -1)) {
+    __Pyx_RaiseBufferIndexError(__pyx_t_2);
+    __PYX_ERR(0, 55, __pyx_L1_error)
+  }
+
+  /* "sst_wrapper/utils/distance_function.pyx":56
+ *         return (
+ *             (point1[0]-point2[0])**2 +
+ *             (point1[1]-point2[1])**2 +             # <<<<<<<<<<<<<<
+ *             normalize_angle(point1[2]-point2[2])**2
+ *         )**0.5
+ */
+  __pyx_t_4 = 1;
+  __pyx_t_2 = -1;
+  if (__pyx_t_4 < 0) {
+    __pyx_t_4 += __pyx_v_point1.shape[0];
+    if (unlikely(__pyx_t_4 < 0)) __pyx_t_2 = 0;
+  } else if (unlikely(__pyx_t_4 >= __pyx_v_point1.shape[0])) __pyx_t_2 = 0;
+  if (unlikely(__pyx_t_2 != -1)) {
+    __Pyx_RaiseBufferIndexError(__pyx_t_2);
+    __PYX_ERR(0, 56, __pyx_L1_error)
+  }
+  __pyx_t_5 = 1;
+  __pyx_t_2 = -1;
+  if (__pyx_t_5 < 0) {
+    __pyx_t_5 += __pyx_v_point2.shape[0];
+    if (unlikely(__pyx_t_5 < 0)) __pyx_t_2 = 0;
+  } else if (unlikely(__pyx_t_5 >= __pyx_v_point2.shape[0])) __pyx_t_2 = 0;
+  if (unlikely(__pyx_t_2 != -1)) {
+    __Pyx_RaiseBufferIndexError(__pyx_t_2);
+    __PYX_ERR(0, 56, __pyx_L1_error)
+  }
+
+  /* "sst_wrapper/utils/distance_function.pyx":57
+ *             (point1[0]-point2[0])**2 +
+ *             (point1[1]-point2[1])**2 +
+ *             normalize_angle(point1[2]-point2[2])**2             # <<<<<<<<<<<<<<
+ *         )**0.5
+ */
+  __pyx_t_6 = 2;
+  __pyx_t_2 = -1;
+  if (__pyx_t_6 < 0) {
+    __pyx_t_6 += __pyx_v_point1.shape[0];
+    if (unlikely(__pyx_t_6 < 0)) __pyx_t_2 = 0;
+  } else if (unlikely(__pyx_t_6 >= __pyx_v_point1.shape[0])) __pyx_t_2 = 0;
+  if (unlikely(__pyx_t_2 != -1)) {
+    __Pyx_RaiseBufferIndexError(__pyx_t_2);
+    __PYX_ERR(0, 57, __pyx_L1_error)
+  }
+  __pyx_t_7 = 2;
+  __pyx_t_2 = -1;
+  if (__pyx_t_7 < 0) {
+    __pyx_t_7 += __pyx_v_point2.shape[0];
+    if (unlikely(__pyx_t_7 < 0)) __pyx_t_2 = 0;
+  } else if (unlikely(__pyx_t_7 >= __pyx_v_point2.shape[0])) __pyx_t_2 = 0;
+  if (unlikely(__pyx_t_2 != -1)) {
+    __Pyx_RaiseBufferIndexError(__pyx_t_2);
+    __PYX_ERR(0, 57, __pyx_L1_error)
+  }
+
+  /* "sst_wrapper/utils/distance_function.pyx":58
+ *             (point1[1]-point2[1])**2 +
+ *             normalize_angle(point1[2]-point2[2])**2
+ *         )**0.5             # <<<<<<<<<<<<<<
+ */
+  __pyx_t_8 = PyFloat_FromDouble(pow(((pow(((*((double *) ( /* dim=0 */ (__pyx_v_point1.data + __pyx_t_1 * __pyx_v_point1.strides[0]) ))) - (*((double *) ( /* dim=0 */ (__pyx_v_point2.data + __pyx_t_3 * __pyx_v_point2.strides[0]) )))), 2.0) + pow(((*((double *) ( /* dim=0 */ (__pyx_v_point1.data + __pyx_t_4 * __pyx_v_point1.strides[0]) ))) - (*((double *) ( /* dim=0 */ (__pyx_v_point2.data + __pyx_t_5 * __pyx_v_point2.strides[0]) )))), 2.0)) + pow(__pyx_f_11sst_wrapper_5utils_17distance_function_normalize_angle(((*((double *) ( /* dim=0 */ (__pyx_v_point1.data + __pyx_t_6 * __pyx_v_point1.strides[0]) ))) - (*((double *) ( /* dim=0 */ (__pyx_v_point2.data + __pyx_t_7 * __pyx_v_point2.strides[0]) ))))), 2.0)), 0.5)); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
+  __pyx_r = __pyx_t_8;
+  __pyx_t_8 = 0;
+  goto __pyx_L0;
+
+  /* "sst_wrapper/utils/distance_function.pyx":41
+ *     Custom distance function for Diffdrive robot.
+ *     """
+ *     def distance(self,double[:] point1,double[:] point2):             # <<<<<<<<<<<<<<
+ *         """
+ *         A cython function that calculates the euclidean distance between two
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_8);
+  __Pyx_AddTraceback("sst_wrapper.utils.distance_function.DiffStateDistance.distance", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __PYX_XDEC_MEMVIEW(&__pyx_v_point1, 1);
@@ -15924,7 +16197,10 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_kp_s_Cannot_assign_to_read_only_memor, __pyx_k_Cannot_assign_to_read_only_memor, sizeof(__pyx_k_Cannot_assign_to_read_only_memor), 0, 0, 1, 0},
   {&__pyx_kp_s_Cannot_create_writable_memory_vi, __pyx_k_Cannot_create_writable_memory_vi, sizeof(__pyx_k_Cannot_create_writable_memory_vi), 0, 0, 1, 0},
   {&__pyx_kp_s_Cannot_index_with_type_s, __pyx_k_Cannot_index_with_type_s, sizeof(__pyx_k_Cannot_index_with_type_s), 0, 0, 1, 0},
+  {&__pyx_kp_s_Custom_distance_function_for_Di, __pyx_k_Custom_distance_function_for_Di, sizeof(__pyx_k_Custom_distance_function_for_Di), 0, 0, 1, 0},
   {&__pyx_kp_s_Custom_distance_function_for_Tr, __pyx_k_Custom_distance_function_for_Tr, sizeof(__pyx_k_Custom_distance_function_for_Tr), 0, 0, 1, 0},
+  {&__pyx_n_s_DiffStateDistance, __pyx_k_DiffStateDistance, sizeof(__pyx_k_DiffStateDistance), 0, 0, 1, 1},
+  {&__pyx_n_s_DiffStateDistance_distance, __pyx_k_DiffStateDistance_distance, sizeof(__pyx_k_DiffStateDistance_distance), 0, 0, 1, 1},
   {&__pyx_n_s_Ellipsis, __pyx_k_Ellipsis, sizeof(__pyx_k_Ellipsis), 0, 0, 1, 1},
   {&__pyx_kp_s_Empty_shape_tuple_for_cython_arr, __pyx_k_Empty_shape_tuple_for_cython_arr, sizeof(__pyx_k_Empty_shape_tuple_for_cython_arr), 0, 0, 1, 0},
   {&__pyx_n_s_IDistance, __pyx_k_IDistance, sizeof(__pyx_k_IDistance), 0, 0, 1, 1},
@@ -16236,16 +16512,29 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__18);
   __Pyx_GIVEREF(__pyx_tuple__18);
 
-  /* "sst_wrapper/utils/distance_function.pyx":16
+  /* "sst_wrapper/utils/distance_function.pyx":15
  *     Custom distance function for Tricycle robot.
  *     """
  *     def distance(self,double[:] point1,double[:] point2):             # <<<<<<<<<<<<<<
- *         return ((point1[0]-point2[0])**2 +(point1[1]-point2[1])**2+ normalize_angle(point1[2]-point2[2])**2 +normalize_angle(point1[5]-point2[5])**2)**0.5
+ *         """
+ *         A cython function that calculates the euclidean distance between two
  */
-  __pyx_tuple__19 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_point1, __pyx_n_s_point2); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(0, 16, __pyx_L1_error)
+  __pyx_tuple__19 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_point1, __pyx_n_s_point2); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(0, 15, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__19);
   __Pyx_GIVEREF(__pyx_tuple__19);
-  __pyx_codeobj__20 = (PyObject*)__Pyx_PyCode_New(3, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__19, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_distance_function_pyx, __pyx_n_s_distance, 16, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__20)) __PYX_ERR(0, 16, __pyx_L1_error)
+  __pyx_codeobj__20 = (PyObject*)__Pyx_PyCode_New(3, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__19, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_distance_function_pyx, __pyx_n_s_distance, 15, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__20)) __PYX_ERR(0, 15, __pyx_L1_error)
+
+  /* "sst_wrapper/utils/distance_function.pyx":41
+ *     Custom distance function for Diffdrive robot.
+ *     """
+ *     def distance(self,double[:] point1,double[:] point2):             # <<<<<<<<<<<<<<
+ *         """
+ *         A cython function that calculates the euclidean distance between two
+ */
+  __pyx_tuple__21 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_point1, __pyx_n_s_point2); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__21);
+  __Pyx_GIVEREF(__pyx_tuple__21);
+  __pyx_codeobj__22 = (PyObject*)__Pyx_PyCode_New(3, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__21, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_distance_function_pyx, __pyx_n_s_distance, 41, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__22)) __PYX_ERR(0, 41, __pyx_L1_error)
 
   /* "View.MemoryView":286
  *         return self.name
@@ -16254,9 +16543,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * cdef strided = Enum("<strided and direct>") # default
  * cdef indirect = Enum("<strided and indirect>")
  */
-  __pyx_tuple__21 = PyTuple_Pack(1, __pyx_kp_s_strided_and_direct_or_indirect); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(1, 286, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__21);
-  __Pyx_GIVEREF(__pyx_tuple__21);
+  __pyx_tuple__23 = PyTuple_Pack(1, __pyx_kp_s_strided_and_direct_or_indirect); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(1, 286, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__23);
+  __Pyx_GIVEREF(__pyx_tuple__23);
 
   /* "View.MemoryView":287
  * 
@@ -16265,9 +16554,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * cdef indirect = Enum("<strided and indirect>")
  * 
  */
-  __pyx_tuple__22 = PyTuple_Pack(1, __pyx_kp_s_strided_and_direct); if (unlikely(!__pyx_tuple__22)) __PYX_ERR(1, 287, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__22);
-  __Pyx_GIVEREF(__pyx_tuple__22);
+  __pyx_tuple__24 = PyTuple_Pack(1, __pyx_kp_s_strided_and_direct); if (unlikely(!__pyx_tuple__24)) __PYX_ERR(1, 287, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__24);
+  __Pyx_GIVEREF(__pyx_tuple__24);
 
   /* "View.MemoryView":288
  * cdef generic = Enum("<strided and direct or indirect>")
@@ -16276,9 +16565,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  * 
  */
-  __pyx_tuple__23 = PyTuple_Pack(1, __pyx_kp_s_strided_and_indirect); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(1, 288, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__23);
-  __Pyx_GIVEREF(__pyx_tuple__23);
+  __pyx_tuple__25 = PyTuple_Pack(1, __pyx_kp_s_strided_and_indirect); if (unlikely(!__pyx_tuple__25)) __PYX_ERR(1, 288, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__25);
+  __Pyx_GIVEREF(__pyx_tuple__25);
 
   /* "View.MemoryView":291
  * 
@@ -16287,9 +16576,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * cdef indirect_contiguous = Enum("<contiguous and indirect>")
  * 
  */
-  __pyx_tuple__24 = PyTuple_Pack(1, __pyx_kp_s_contiguous_and_direct); if (unlikely(!__pyx_tuple__24)) __PYX_ERR(1, 291, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__24);
-  __Pyx_GIVEREF(__pyx_tuple__24);
+  __pyx_tuple__26 = PyTuple_Pack(1, __pyx_kp_s_contiguous_and_direct); if (unlikely(!__pyx_tuple__26)) __PYX_ERR(1, 291, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__26);
+  __Pyx_GIVEREF(__pyx_tuple__26);
 
   /* "View.MemoryView":292
  * 
@@ -16298,19 +16587,19 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  * 
  */
-  __pyx_tuple__25 = PyTuple_Pack(1, __pyx_kp_s_contiguous_and_indirect); if (unlikely(!__pyx_tuple__25)) __PYX_ERR(1, 292, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__25);
-  __Pyx_GIVEREF(__pyx_tuple__25);
+  __pyx_tuple__27 = PyTuple_Pack(1, __pyx_kp_s_contiguous_and_indirect); if (unlikely(!__pyx_tuple__27)) __PYX_ERR(1, 292, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__27);
+  __Pyx_GIVEREF(__pyx_tuple__27);
 
   /* "(tree fragment)":1
  * def __pyx_unpickle_Enum(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
  */
-  __pyx_tuple__26 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__26)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__26);
-  __Pyx_GIVEREF(__pyx_tuple__26);
-  __pyx_codeobj__27 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__26, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_Enum, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__27)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_tuple__28 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__28)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__28);
+  __Pyx_GIVEREF(__pyx_tuple__28);
+  __pyx_codeobj__29 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__28, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_Enum, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__29)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -16667,7 +16956,7 @@ if (!__Pyx_RefNanny) {
  * import numpy as np
  * 
  * from sparse_rrt import _sst_module             # <<<<<<<<<<<<<<
- * # from bc_gym_planning_env.utilities.coordinate_transformations import normalize_angle
+ * 
  * 
  */
   __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 3, __pyx_L1_error)
@@ -16684,49 +16973,99 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "sst_wrapper/utils/distance_function.pyx":12
- *     return (z+PI) % (2 * PI) - PI
+  /* "sst_wrapper/utils/distance_function.pyx":11
+ * 
  * 
  * class TriStateDistance(_sst_module.IDistance):             # <<<<<<<<<<<<<<
  *     """
  *     Custom distance function for Tricycle robot.
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_sst_module); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_sst_module); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 11, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_IDistance); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_IDistance); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 11, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 11, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_CalculateMetaclass(NULL, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CalculateMetaclass(NULL, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 11, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_1, __pyx_t_2, __pyx_n_s_TriStateDistance, __pyx_n_s_TriStateDistance, (PyObject *) NULL, __pyx_n_s_sst_wrapper_utils_distance_funct, __pyx_kp_s_Custom_distance_function_for_Tr); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_1, __pyx_t_2, __pyx_n_s_TriStateDistance, __pyx_n_s_TriStateDistance, (PyObject *) NULL, __pyx_n_s_sst_wrapper_utils_distance_funct, __pyx_kp_s_Custom_distance_function_for_Tr); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 11, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "sst_wrapper/utils/distance_function.pyx":16
+  /* "sst_wrapper/utils/distance_function.pyx":15
  *     Custom distance function for Tricycle robot.
  *     """
  *     def distance(self,double[:] point1,double[:] point2):             # <<<<<<<<<<<<<<
- *         return ((point1[0]-point2[0])**2 +(point1[1]-point2[1])**2+ normalize_angle(point1[2]-point2[2])**2 +normalize_angle(point1[5]-point2[5])**2)**0.5
+ *         """
+ *         A cython function that calculates the euclidean distance between two
  */
-  __pyx_t_4 = __Pyx_CyFunction_NewEx(&__pyx_mdef_11sst_wrapper_5utils_17distance_function_16TriStateDistance_1distance, 0, __pyx_n_s_TriStateDistance_distance, NULL, __pyx_n_s_sst_wrapper_utils_distance_funct, __pyx_d, ((PyObject *)__pyx_codeobj__20)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 16, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_NewEx(&__pyx_mdef_11sst_wrapper_5utils_17distance_function_16TriStateDistance_1distance, 0, __pyx_n_s_TriStateDistance_distance, NULL, __pyx_n_s_sst_wrapper_utils_distance_funct, __pyx_d, ((PyObject *)__pyx_codeobj__20)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 15, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_distance, __pyx_t_4) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_distance, __pyx_t_4) < 0) __PYX_ERR(0, 15, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "sst_wrapper/utils/distance_function.pyx":12
- *     return (z+PI) % (2 * PI) - PI
+  /* "sst_wrapper/utils/distance_function.pyx":11
+ * 
  * 
  * class TriStateDistance(_sst_module.IDistance):             # <<<<<<<<<<<<<<
  *     """
  *     Custom distance function for Tricycle robot.
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_1, __pyx_n_s_TriStateDistance, __pyx_t_2, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_1, __pyx_n_s_TriStateDistance, __pyx_t_2, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 11, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_TriStateDistance, __pyx_t_4) < 0) __PYX_ERR(0, 12, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_TriStateDistance, __pyx_t_4) < 0) __PYX_ERR(0, 11, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "sst_wrapper/utils/distance_function.pyx":37
+ * 
+ * 
+ * class DiffStateDistance(_sst_module.IDistance):             # <<<<<<<<<<<<<<
+ *     """
+ *     Custom distance function for Diffdrive robot.
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_sst_module); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 37, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_IDistance); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 37, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 37, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_GIVEREF(__pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
+  __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_CalculateMetaclass(NULL, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 37, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_1, __pyx_t_2, __pyx_n_s_DiffStateDistance, __pyx_n_s_DiffStateDistance, (PyObject *) NULL, __pyx_n_s_sst_wrapper_utils_distance_funct, __pyx_kp_s_Custom_distance_function_for_Di); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 37, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+
+  /* "sst_wrapper/utils/distance_function.pyx":41
+ *     Custom distance function for Diffdrive robot.
+ *     """
+ *     def distance(self,double[:] point1,double[:] point2):             # <<<<<<<<<<<<<<
+ *         """
+ *         A cython function that calculates the euclidean distance between two
+ */
+  __pyx_t_4 = __Pyx_CyFunction_NewEx(&__pyx_mdef_11sst_wrapper_5utils_17distance_function_17DiffStateDistance_1distance, 0, __pyx_n_s_DiffStateDistance_distance, NULL, __pyx_n_s_sst_wrapper_utils_distance_funct, __pyx_d, ((PyObject *)__pyx_codeobj__22)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_distance, __pyx_t_4) < 0) __PYX_ERR(0, 41, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "sst_wrapper/utils/distance_function.pyx":37
+ * 
+ * 
+ * class DiffStateDistance(_sst_module.IDistance):             # <<<<<<<<<<<<<<
+ *     """
+ *     Custom distance function for Diffdrive robot.
+ */
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_1, __pyx_n_s_DiffStateDistance, __pyx_t_2, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 37, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_DiffStateDistance, __pyx_t_4) < 0) __PYX_ERR(0, 37, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -16762,7 +17101,7 @@ if (!__Pyx_RefNanny) {
  * cdef strided = Enum("<strided and direct>") # default
  * cdef indirect = Enum("<strided and indirect>")
  */
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__21, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 286, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__23, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 286, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_XGOTREF(generic);
   __Pyx_DECREF_SET(generic, __pyx_t_2);
@@ -16776,7 +17115,7 @@ if (!__Pyx_RefNanny) {
  * cdef indirect = Enum("<strided and indirect>")
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__22, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 287, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__24, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 287, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_XGOTREF(strided);
   __Pyx_DECREF_SET(strided, __pyx_t_2);
@@ -16790,7 +17129,7 @@ if (!__Pyx_RefNanny) {
  * 
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__23, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 288, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__25, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 288, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_XGOTREF(indirect);
   __Pyx_DECREF_SET(indirect, __pyx_t_2);
@@ -16804,7 +17143,7 @@ if (!__Pyx_RefNanny) {
  * cdef indirect_contiguous = Enum("<contiguous and indirect>")
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__24, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 291, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__26, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 291, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_XGOTREF(contiguous);
   __Pyx_DECREF_SET(contiguous, __pyx_t_2);
@@ -16818,7 +17157,7 @@ if (!__Pyx_RefNanny) {
  * 
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__25, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 292, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__27, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 292, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_XGOTREF(indirect_contiguous);
   __Pyx_DECREF_SET(indirect_contiguous, __pyx_t_2);
