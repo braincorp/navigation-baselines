@@ -1,8 +1,6 @@
 import numpy as np
 
 from sparse_rrt import _sst_module
-# from bc_gym_planning_env.utilities.coordinate_transformations import normalize_angle
-
 
 
 cdef double normalize_angle(double z):
