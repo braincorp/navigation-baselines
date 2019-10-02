@@ -13,7 +13,6 @@ from sst_wrapper.utils.distance_function import TriStateDistance  # pylint: disa
 from sst_wrapper.utils.distance_function import DiffStateDistance  # pylint: disable=no-name-in-module
 
 
-
 class BcGymWrapper():
     """A class to wrap around PlanEnv"""
     def __init__(self, env):
@@ -96,4 +95,5 @@ class BcGymWrapper():
             return DiffStateDistance()
 
         else:
-            raise Exception('No robot name "{}" exists'.format(self.robot_type))
+            raise Exception('No robot name "{}" exists'.format(
+                self.robot_type))
