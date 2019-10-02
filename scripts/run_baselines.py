@@ -2,7 +2,7 @@ from bc_gym_planning_env.envs.base.env import EnvParams
 from scripts.run_planner import run_planner, parse_arguments, create_env
 from sparse_rrt.planners import SST
 from sst_wrapper.envs.bc_gym_wrapper import BcGymWrapper
-from sst_wrapper.envs.gym_sst_wrapper import bc_sst_wrapper
+from sst_wrapper.envs.gym_sst_wrapper import BcSstWrapper
 
 import argparse
 import multiprocessing as mp
@@ -22,7 +22,7 @@ class parameter_class():
         env = create_env(self.robot, self.env, s)
         wrapped_env = BcGymWrapper(env)
         start, goal = wrapped_env.start, wrapped_env.goal
-        bc_robot = bc_sst_wrapper(wrapped_env)
+        bc_robot = BcSstWrapper(wrapped_env)
         planner = SST(
             state_bounds=bc_robot.get_state_bounds(),
             control_bounds=bc_robot.get_control_bounds(),
