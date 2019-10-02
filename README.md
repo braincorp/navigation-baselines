@@ -32,9 +32,9 @@ You can run this planner on an object of class of subclass of `bc_gym_planning_e
 You can use the following script to create an object of class `sparse_rrt.systems.system_interface.Isystem` for an object `env`.
 
 ```python
-from sst_wrapper.envs.bc_gym_wrapper import bc_gym_wrapper
-from sst_wrapper.envs.gym_sst_wrapper import bc_sst_wrapper
+from sst_wrapper.envs.bc_gym_wrapper import BcGymWrapper
+from sst_wrapper.envs.gym_sst_wrapper import BcSstWrapper
 
-system = bc_sst_wrapper(bc_gym_wrapper(env))
+system = BcSstWrapper(BcGymWrapper(env))
 ```
 `system` can now be used to run `sparse_rrt.planners.SST`. Look at [sparse-rrt](https://github.com/olegsinyavskiy/sparse_rrt) for more info.
