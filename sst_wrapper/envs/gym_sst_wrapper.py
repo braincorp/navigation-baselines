@@ -80,4 +80,8 @@ class BcSstWrapper(BaseSystem):
         return self.env.circular_topology
 
     def distance_computer(self):
-        return TriStateDistance()
+        """
+        Function that determines the distance between state.
+        :return: A class with the method distance.
+        """
+        return self.env.distance_measure()

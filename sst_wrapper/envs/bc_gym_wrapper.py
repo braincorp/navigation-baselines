@@ -6,7 +6,12 @@ from __future__ import division
 import numpy as np
 from bc_gym_planning_env.envs.base.env import PlanEnv
 from bc_gym_planning_env.envs.base.action import Action
+from bc_gym_planning_env.robot_models.standard_robot_names_examples \
+    import StandardRobotExamples
 from sst_wrapper.utils.robot_state_factory import create_robot_state, get_robot_state_info
+from sst_wrapper.utils.distance_function import TriStateDistance  # pylint: disable=no-name-in-module
+from sst_wrapper.utils.distance_function import DiffStateDistance  # pylint: disable=no-name-in-module
+
 
 
 class BcGymWrapper():
@@ -78,3 +83,17 @@ class BcGymWrapper():
         """
         obs = self.env.reset()
         return obs
+
+    def distance_measure(self):
+        """
+        Sets the distance measure, based on the robot model used.
+        :returns: The corresponding distance measure class for the robot.
+        """
+        if self.robot_type in StandardRobotExamples.INDUSTRIAL_TRICYCLE_V1:
+            return TriStateDistance()
+
+        elif self.robot_type in StandardRobotExamples.INDUSTRIAL_DIFFDRIVE_V1:
+            return DiffStateDistance()
+
+        else:
+            raise Exception('No robot name "{}" exists'.format(self.robot_type))
