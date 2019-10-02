@@ -9,7 +9,7 @@ from bc_gym_planning_env.envs.base.action import Action
 from sst_wrapper.utils.robot_state_factory import create_robot_state, get_robot_state_info
 
 
-class bc_gym_wrapper():  # pylint: disable=invalid-name
+class BcGymWrapper():
     """A class to wrap around PlanEnv"""
     def __init__(self, env):
         """
