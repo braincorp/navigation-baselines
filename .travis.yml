@@ -2,6 +2,12 @@ language: python
 python:
   - "3.6"
 
+install:
+  - pip install -r requirements.txt
+  - pip install pylint
+  
 script:
   - pip install -e .
+  - py.test --pep8 -m pep8 -n0
+  - ./test_pylint
   - python scripts/run_planner.py tri mini

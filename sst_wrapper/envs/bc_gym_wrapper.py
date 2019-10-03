@@ -1,10 +1,16 @@
+""" Wrapper for PlanEnv for to be passed to the sst planner"""
+from __future__ import print_function
+from __future__ import absolute_import
+from __future__ import division
+
 import numpy as np
 from bc_gym_planning_env.envs.base.env import PlanEnv
 from bc_gym_planning_env.envs.base.action import Action
 from sst_wrapper.utils.robot_state_factory import create_robot_state, get_robot_state_info
 
 
-class bc_gym_wrapper():
+class BcGymWrapper():
+    """A class to wrap around PlanEnv"""
     def __init__(self, env):
         """
         Initialize the wrapper
@@ -33,7 +39,7 @@ class bc_gym_wrapper():
         """
         Sets the goal position of the robot. The states that do not mark the initial position of the robot is set to be 0.1.
         """
-        goal_pose = self.env._reward_provider._state.current_goal_pose()
+        goal_pose = self.env._reward_provider._state.path[-1]  #pylint: disable=protected-access
         goal_vel = np.array([1e-1] * (len(self.start) - len(goal_pose)))
         self.goal = np.concatenate((goal_pose, goal_vel))
 
@@ -60,6 +66,7 @@ class bc_gym_wrapper():
         """
         Take a step in the environment
         :param action: A numpy array, the same size as action dim
+        :return: A tuple of obs,r,done,info returned by the environment
         """
         obs, r, done, info = self.env.step(Action(np.array(action)))
         return obs, r, done, info
@@ -67,6 +74,7 @@ class bc_gym_wrapper():
     def reset(self):
         """
         Resets the environment
+        :return: The observation returned from resetting the environment
         """
         obs = self.env.reset()
         return obs

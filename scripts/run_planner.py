@@ -6,8 +6,8 @@ from bc_gym_planning_env.envs.rw_corridors.tdwa_test_environments import get_ran
 from bc_gym_planning_env.envs.synth_turn_env import RandomAisleTurnEnv
 from bc_gym_planning_env.robot_models.standard_robot_names_examples import StandardRobotExamples
 from sparse_rrt.experiments.experiment_utils import run_config
-from sst_wrapper.envs.bc_gym_wrapper import bc_gym_wrapper
-from sst_wrapper.envs.gym_sst_wrapper import bc_sst_wrapper
+from sst_wrapper.envs.bc_gym_wrapper import BcGymWrapper
+from sst_wrapper.envs.gym_sst_wrapper import BcSstWrapper
 import argparse
 import numpy as np
 import time
@@ -16,7 +16,7 @@ import time
 def run_planner(env, args):
     # write a planner for a given environment and iterations
     start, goal = env.start, env.goal
-    bc_robot = bc_sst_wrapper(env)
+    bc_robot = BcSstWrapper(env)
     if args.graph:
         display_type = 'tree'
     else:
@@ -109,7 +109,7 @@ def create_env(robot, env, seed=None):
 if __name__ == "__main__":
     args = parse_arguments()
     env = create_env(args.robot, args.env, args.seed)
-    wrapped_env = bc_gym_wrapper(env)
+    wrapped_env = BcGymWrapper(env)
     solution = run_planner(wrapped_env, args)
 
     # Evaluate the solution
