@@ -1,4 +1,5 @@
 """A class to create a function that sets up a system for sst planning"""
+
 from __future__ import print_function
 from __future__ import absolute_import
 from __future__ import division
@@ -75,3 +76,10 @@ class BcSstWrapper(BaseSystem):
         :return: boolean flag for each coordinate
         """
         return self.env.circular_topology
+
+    def distance_computer(self):
+        """
+        Function that determines the distance between state.
+        :return: A class with the method distance.
+        """
+        return self.env.distance_measure()

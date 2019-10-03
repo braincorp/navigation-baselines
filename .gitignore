@@ -1,7 +1,6 @@
 sparse_rrt/**
 env_setup.sh
 **/__pycache__
-test/**
 build/**
 
 
@@ -14,4 +13,4 @@ tox.ini
 *.ipynb_checkpoints/
 
 **/*.so
-sst_wrapper/**/*.c
+
