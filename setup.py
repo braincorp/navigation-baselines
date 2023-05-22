@@ -15,7 +15,7 @@ setup(
         'bc_gym_planning_env @ git+https://github.com/jacobjj/bc-gym-planning-env.git@new_reward_fun#egg=bc_gym_planning_env-0.0.1',
         'sparse_rrt @ git+https://github.com/jacobjj/sparse_rrt.git@master#egg=sparse_rrt-0.0.2',
         'cairosvg==2.4.2',
-        'requests==2.22.0',
+        'requests==2.31.0',
     ],
     package_data={'': ['input']},
     include_package_data=True,
